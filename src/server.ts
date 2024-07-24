@@ -5,6 +5,7 @@ import { confirmTrip } from './routes/confirm-trip'
 import { confirmParticipants } from './routes/confirm-participant'
 import { createActivity } from './routes/create-activity'
 import { createLink } from './routes/create-link'
+import { createInvite } from './routes/create-invite'
 import { getActivities } from './routes/get-activities'
 import { getParticipants } from './routes/get-participants'
 import { getLinks } from './routes/get-links'
@@ -28,7 +29,8 @@ app.register(getActivities)
 app.register(createLink)
 app.register(getLinks)
 app.register(getParticipants)
+app.register(createInvite)
 
-app.listen({ port: 3333}).then(() => {
+app.listen({ port: 3333 }).then(() => {
   console.log('Ain ze da manga')
 })
