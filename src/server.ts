@@ -10,6 +10,8 @@ import { getActivities } from './routes/get-activities'
 import { getParticipants } from './routes/get-participants'
 import { getLinks } from './routes/get-links'
 import { updateTrip } from './routes/update-trip'
+import { getTripDetails } from './routes/get-trip-details'
+import { getParticipant } from './routes/get-participant'
 
 import { validatorCompiler, serializerCompiler } from 'fastify-type-provider-zod'
 
@@ -32,6 +34,8 @@ app.register(getLinks)
 app.register(getParticipants)
 app.register(createInvite)
 app.register(updateTrip)
+app.register(getTripDetails)
+app.register(getParticipant)
 
 app.listen({ port: 3333 }).then(() => {
   console.log('Ain ze da manga')
