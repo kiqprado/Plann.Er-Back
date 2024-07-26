@@ -6,6 +6,7 @@ import { dayjs } from '../lib/dayjs'
 import { getMailClient } from '../lib/mail'
 import nodemailer from 'nodemailer'
 import { ClientError } from '../errors/client-error'
+import { env } from '../env'
 
 export async function confirmTrip(app: FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().get('/trips/:tripId/confirm', {
@@ -35,7 +36,7 @@ export async function confirmTrip(app: FastifyInstance) {
     }
 
     if(trip.is_confirmed) {
-      return reply.redirect(`http://localhost:5173/trips/${tripId}`)
+      return reply.redirect(`${env.WEB_BASE_URL}/trips/${tripId}`)
     }
 
     await prisma.trip.update({
@@ -46,7 +47,7 @@ export async function confirmTrip(app: FastifyInstance) {
     const formattedStartDate = dayjs(trip.starts_at).format('LL')
     const formattedEndDate = dayjs(trip.ends_at).format('LL')
 
-    const confirmationLink =  `http://localhost:3333/participants/${participant.id}/confirm`
+    const confirmationLink =  `${env.API_BASE_URL}/participants/${participant.id}/confirm`
 
     const mail = await getMailClient()
 
@@ -83,6 +84,6 @@ export async function confirmTrip(app: FastifyInstance) {
       })
     )
 
-    return reply.redirect(`http://localhost:5173/trips/${tripId}`)
+    return reply.redirect(`${env.WEB_BASE_URL}/trips/${tripId}`)
   })
 }

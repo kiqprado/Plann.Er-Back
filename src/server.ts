@@ -15,6 +15,7 @@ import { getParticipant } from './routes/get-participant'
 
 import { errorHandler } from './error-handler'
 import { validatorCompiler, serializerCompiler } from 'fastify-type-provider-zod'
+import { env } from './env'
 
 const app = fastify()
 
@@ -40,6 +41,6 @@ app.register(updateTrip)
 app.register(getTripDetails)
 app.register(getParticipant)
 
-app.listen({ port: 3333 }).then(() => {
+app.listen({ port: env.PORT }).then(() => {
   console.log('Ain ze da manga')
 })
