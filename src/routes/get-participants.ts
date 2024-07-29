@@ -35,7 +35,7 @@ export async function getParticipants(app: FastifyInstance) {
         throw new ClientError('Trips not found.')
       }
 
-      return { getParticipants: trip.participants }
+      return { participants: trip.participants }
     }
   )
 }
